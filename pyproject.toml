@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling>=1.26,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dagreon"
+version = "0.1.0"
+authors = [
+  { name="Leonard Schulz", email="leonard.schulz@tuhh.de" },
+]
+description = "A flexible DAG workflow library for researchers, with persistent results and easy parallel execution."
+dependencies = [
+  "lmdb>=1.5,<3",
+  "rustworkx>=0.17,<0.18",
+  "xxhash>=3.5,<4",
+  "tqdm>=4.66,<5",
+]
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICENSE*"]
+
+[project.optional-dependencies]
+ray = [
+  "ray>=2.30,<3; platform_system != 'Windows' or python_version < '3.13'",
+]
