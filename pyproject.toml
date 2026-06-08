@@ -30,3 +30,9 @@ license-files = ["LICENSE*"]
 ray = [
   "ray>=2.30,<3; platform_system != 'Windows' or python_version < '3.13'",
 ]
+
+[project.urls]
+Homepage = "https://github.com/LPSchulz/dagreon"
+Documentation = "https://dagreon.readthedocs.io/"
+Repository = "https://github.com/LPSchulz/dagreon"
+Issues = "https://github.com/LPSchulz/dagreon/issues"
