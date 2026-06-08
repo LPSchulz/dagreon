@@ -12,6 +12,7 @@ description = "A flexible DAG workflow library for researchers, with persistent 
 dependencies = [
   "lmdb>=1.5,<3",
   "rustworkx>=0.17,<0.18",
+  "typing-extensions>=4.12,<5",
   "xxhash>=3.5,<4",
   "tqdm>=4.66,<5",
 ]
