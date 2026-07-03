@@ -68,8 +68,12 @@ def test_run_variants_with_ray_returns_same_values_as_local(ray_runtime):
         tqdm_args={"disable": True},
     )
 
-    assert ray_results == local_results == [
-        "variant: 1 -> 3.0",
-        "variant: 5 -> 15.0",
-        "variant: -2 -> -6.0",
-    ]
+    assert (
+        ray_results
+        == local_results
+        == [
+            "variant: 1 -> 3.0",
+            "variant: 5 -> 15.0",
+            "variant: -2 -> -6.0",
+        ]
+    )

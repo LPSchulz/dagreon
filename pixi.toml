@@ -3,7 +3,7 @@ authors = ["Leonard Schulz <leonard.schulz@tuhh.de>"]
 channels = ["conda-forge"]
 name = "dagreon"
 platforms = ["linux-64"]
-version = "0.1.0"
+version = "0.2.0"
 
 [tasks]
 format-check = { cmd = "ruff format --check dagreon tests docs", description = "Check code formatting." }
