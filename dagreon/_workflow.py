@@ -175,6 +175,14 @@ class ExecutionPlan:
         return result
 
 
+def _execute_plan(plan: ExecutionPlan) -> Any:
+    return plan.execute()
+
+
+def _profile_plan(plan: ExecutionPlan) -> ProfilingReport:
+    return plan.profile()
+
+
 class Workflow:
     """A workflow composed of tasks that form a DAG.
 
@@ -295,7 +303,7 @@ class Workflow:
         # run the workflow
         if self.use_ray:
             ray = _require_ray()
-            ref = ray.remote(plan.execute).options(**ray_options).remote()
+            ref = ray.remote(_execute_plan).options(**ray_options).remote(plan)
             res = ray.get(ref)
         else:
             res = plan.execute()
@@ -336,7 +344,7 @@ class Workflow:
         # run the workflow
         if self.use_ray:
             ray = _require_ray()
-            ref = ray.remote(plan.profile).options(**ray_options).remote()
+            ref = ray.remote(_profile_plan).options(**ray_options).remote(plan)
             report = ray.get(ref)
         else:
             report = plan.profile()
@@ -418,7 +426,7 @@ class Workflow:
             if self.use_ray:
                 ray = _require_ray()
                 ref_to_index = {
-                    ray.remote(plans[i].execute).options(**ray_options).remote(): i
+                    ray.remote(_execute_plan).options(**ray_options).remote(plans[i]): i
                     for i in unloaded_indices
                 }
                 remaining = list(ref_to_index.keys())
